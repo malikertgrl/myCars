@@ -6,10 +6,12 @@ import ReduxThunk from "redux-thunk";
 import reducers from "./src/reducers";
 import Router from "./src/navigation/Router";
 import NetInfo from '@react-native-community/netinfo';
-import CodePush from "react-native-code-push";
+import codePush from "react-native-code-push";
 
 //code Push deneme yapıyoum !!
-let codePushOptions = { checkFrequency: CodePush.CheckFrequency.ON_APP_START };
+// deneme github 
+
+let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_START };
 
 class App extends Component {
   constructor(props) {
@@ -35,9 +37,9 @@ class App extends Component {
   }
 
    componentDidMount () {
-     CodePush.sync({
+     codePush.sync({
        updateDialog: true,
-       installMode: CodePush.InstallMode.IMMEDIATE
+       installMode: codePush.InstallMode.IMMEDIATE
    });
   }
   
@@ -62,8 +64,7 @@ class App extends Component {
        
     }
 
-
-
+c
 
   }
 }
