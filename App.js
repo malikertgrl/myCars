@@ -8,9 +8,7 @@ import Router from "./src/navigation/Router";
 import NetInfo from '@react-native-community/netinfo';
 import codePush from "react-native-code-push";
 
-
-
-
+//merge denemesi 
 let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_START };
 
 class App extends Component {
