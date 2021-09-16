@@ -10,6 +10,7 @@ import codePush from "react-native-code-push";
 
 //code Push deneme yapıyoum !!
 // deneme github 
+//branch değişikliği
 
 let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_START };
 
@@ -19,7 +20,7 @@ class App extends Component {
     this.state = {
       isConnected: true
     };
-    
+
 
     this.unsubscribeNetInfo = NetInfo.addEventListener((info) => {
       console.log("netinfo 2", info)
@@ -36,35 +37,35 @@ class App extends Component {
     this.unsubscribeNetInfo();
   }
 
-   componentDidMount () {
-     codePush.sync({
-       updateDialog: true,
-       installMode: codePush.InstallMode.IMMEDIATE
-   });
+  componentDidMount() {
+    codePush.sync({
+      updateDialog: true,
+      installMode: codePush.InstallMode.IMMEDIATE
+    });
   }
-  
 
 
- 
+
+
 
   render() {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
     if (!this.state.isConnected) {
       return (
-        <View style = {{backgroundColor:"red", width:"100%",padding:10}}>
-        <Text style={{alignSelf:"center", color:"white",fontSize:15}}>İnternet bağlantısı yok</Text>
+        <View style={{ backgroundColor: "red", width: "100%", padding: 10 }}>
+          <Text style={{ alignSelf: "center", color: "white", fontSize: 15 }}>İnternet bağlantısı yok</Text>
         </View>
-      ) 
-      }else {
-        return(
-          <Provider store={store}>
+      )
+    } else {
+      return (
+        <Provider store={store}>
           <Router />
         </Provider>
-        )
-       
+      )
+
     }
 
-c
+    c
 
   }
 }
