@@ -64,9 +64,6 @@ class App extends Component {
       )
 
     }
-
-    c
-
   }
 }
-export default CodePush(codePushOptions)(App);
+export default codePush(codePushOptions)(App);
