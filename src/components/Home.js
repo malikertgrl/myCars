@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { FlatList, Text, View, TouchableOpacity, Image } from 'react-native';
+import { FlatList, Text, View, TouchableOpacity, Image, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 // import { useIsFocused } from '@react-navigation/native';
@@ -99,7 +99,7 @@ const Home = ({ navigation }) => {
   })
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <FlatList
         data={car}
         renderItem={({ item, index }) => (
@@ -113,10 +113,10 @@ const Home = ({ navigation }) => {
                   style={{ width: 100, height: 100 }}
                 />
                 <View>
-                <Text style={text}> {item.title} </Text>
-                <Text  style= {{color:"gray", marginTop:40}}> {item.model} model</Text> 
+                  <Text style={text}> {item.title} </Text>
+                  <Text style={{ color: "gray", marginTop: 40 }}> {item.model} model</Text>
 
-                  
+
                 </View>
               </View>
 
@@ -125,19 +125,34 @@ const Home = ({ navigation }) => {
 
 
               <View>
-              <TouchableOpacity onPress={() => removeItemFromList(index)}>
-                <Text>
-                  <Icon name="trash" size={30} color="black" />
-                </Text>
-              </TouchableOpacity>
+                <TouchableOpacity onPress={() => removeItemFromList(index)}>
+                  <Text>
+                    <Icon name="trash" size={30} color="black" />
+                  </Text>
+                </TouchableOpacity>
               </View>
-             
+
 
             </View>
 
           </TouchableOpacity>
+
+
+
+
         )}
+
+
       />
+      <View style={{ alignItems: "center", marginVertical: 5 }}>
+        <Button
+          title="çıkış yap"
+          color="#E8704A"
+          style={{ margin: 20 }}
+          onPress={() => navigation.navigate("LoginForm")}
+        />
+      </View>
+
     </View>
 
   );
