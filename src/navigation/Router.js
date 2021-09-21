@@ -9,7 +9,6 @@ import { Button, CardSection } from "../general"
 import LoginForm from "../components/LoginForm";
 import SigninForm from "../components/SigninForm";
 import Profile from "../components/Profile";
-
 import Camera from "../components/Camera";
 import ImagePicker from '../components/ImagePicker';
 import { navigationRef } from "./RootNavigation";

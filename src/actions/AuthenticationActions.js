@@ -28,7 +28,7 @@ export const loginUser = ({ email, password }) => {
     console.log("user");
     return (dispatch) => {
         dispatch({ type: LOGIN_USER })
-       
+
         if (email === "" || password === "") {
             Alert.alert(
                 "UYARI",
@@ -43,7 +43,7 @@ export const loginUser = ({ email, password }) => {
             );
             dispatch({
                 type: LOGIN_USER_FAIL,
-        
+
             })
         } else {
             console.log("Loginemail: ", email);
@@ -58,7 +58,7 @@ export const loginUser = ({ email, password }) => {
                 .catch((e) => {
                     dispatch({
                         type: LOGIN_USER_FAIL,
-                
+
                     })
                     console.log("hata");
                     console.log(e.code);
@@ -88,7 +88,7 @@ export const loginUser = ({ email, password }) => {
                     } else if (e.code === "auth/network-request-failed") {
                         Alert.alert(
                             "UYARI",
-                            "auth/network-request-failed!",
+                            "Lütfen internet bağlantınızı kontrol ediniz!",
                             [
                                 {
                                     text: "Tamam",

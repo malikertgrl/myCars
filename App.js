@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { View, Text } from "react-native";
+import React, { useState, useEffect, useLayoutEffect } from "react";
+import { View, Text, Alert } from "react-native";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import ReduxThunk from "redux-thunk";
@@ -8,64 +8,59 @@ import Router from "./src/navigation/Router";
 import NetInfo from '@react-native-community/netinfo';
 import codePush from "react-native-code-push";
 
-//code Push deneme yapıyoum !!
-// deneme github 
-//projeye Redux eklentisi ekliyorum 
+//merge denemesi 
 let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_START };
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isConnected: true
-    };
+const App = () => {
 
 
-    this.unsubscribeNetInfo = NetInfo.addEventListener((info) => {
-      console.log("netinfo 2", info)
-      // this.setState({ isConnected: info.isConnected })
-      // if (!info.isConnected) {
-      //   alert(
-      //     "internet yok!"
-      //   );
-      // }
-    })
-  }
+  useEffect(() => {
+    const unsubscribeNetInfo = NetInfo.addEventListener((info) => {
+      // console.log("netinfo type: ", info.type)
+      // console.log("netinfo isConnected: ", info.isConnected)
+      console.log(info.isConnected, "isConnected");
 
-  componentWillUnmount() {
-    this.unsubscribeNetInfo();
-  }
+      if (!info.isConnected) {
+        console.log("internet yok if koşul içi");
+        Alert.alert(
+          "Bağlantı Hatası",
+          "İnternet bağlantınızı kontrol ediniz",
+          [
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ]
+        );
+      }
 
-  componentDidMount() {
+      return () => unsubscribeNetInfo();
+    });
+  }, [])
+
+
+
+  useEffect(() => {
     codePush.sync({
       updateDialog: true,
       installMode: codePush.InstallMode.IMMEDIATE
     });
-  }
+  }, [])
 
 
 
 
 
-  render() {
-    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
-    if (!this.state.isConnected) {
-      return (
-        <View style={{ backgroundColor: "red", width: "100%", padding: 10 }}>
-          <Text style={{ alignSelf: "center", color: "white", fontSize: 15 }}>İnternet bağlantısı yok</Text>
-        </View>
-      )
-    } else {
-      return (
-        <Provider store={store}>
-          <Router />
-        </Provider>
-      )
 
-    }
 
-    c
+  const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
 
-  }
+  return (
+
+    <Provider store={store}>
+      <Router />
+    </Provider>
+  )
+
 }
-export default CodePush(codePushOptions)(App);
+
+
+
+export default codePush(codePushOptions)(App);
