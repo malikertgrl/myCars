@@ -3,7 +3,7 @@ import { View, Text, Button } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useCamera } from 'react-native-camera-hooks';
 import RNFS from "react-native-fs";
-
+//conf
 const Camera = () => {
 
     const [{ cameraRef }, { takePicture }] = useCamera(null);
@@ -17,7 +17,7 @@ const Camera = () => {
             const randomName = Math.random().toString();
             const newFilePath = RNFS.ExternalDirectoryPath + `/${randomName}.jpg`
             RNFS.moveFile(filePath, newFilePath)
-                .then (() => {
+                .then(() => {
                     console.log('image moved', filePath, 'to', newFilePath)
                 })
                 .catch(e => {
@@ -25,7 +25,7 @@ const Camera = () => {
                 })
         } catch (e) {
             console.log(e);
-        } 
+        }
     }
 
 
@@ -40,15 +40,15 @@ const Camera = () => {
                     message: 'Uygulamanın kameranızı kullanması için izin vermeniz gerekiyor',
                     buttonPositive: 'Tamam',
                     buttonNegative: 'İptal',
-                  }}
+                }}
             />
-            
-            <Button 
-            title= "Capture"
-            onPress= {() => captureHandler()}
+
+            <Button
+                title="Capture"
+                onPress={() => captureHandler()}
 
             />
-           
+
 
 
         </View>
@@ -67,10 +67,10 @@ const styles = {
         marginLeft: 100,
         marginRight: 100
 
-        
+
 
     },
-    
+
 }
 
 export default Camera;
