@@ -26,7 +26,7 @@ const App = () => {
           "Bağlantı Hatası",
           "İnternet bağlantınızı kontrol ediniz",
           [
-            { text: "OK", onPress: () => console.log("OK Pressed") }
+            { text: "Tamam", onPress: () => console.log("OK Pressed") }
           ]
         );
       }
