@@ -3,7 +3,7 @@ import { View, Text, Button } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useCamera } from 'react-native-camera-hooks';
 import RNFS from "react-native-fs";
-//conflicts21351561563gir add
+//conf
 const Camera = () => {
 
     const [{ cameraRef }, { takePicture }] = useCamera(null);
