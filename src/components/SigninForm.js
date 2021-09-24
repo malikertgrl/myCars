@@ -1,18 +1,24 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { View, Text, TextInput } from "react-native";
-import {Card, CardSection, Button, Spinners} from "../general";
+import { Card, CardSection, Button, Spinners } from "../general";
 import { loginUser, inputChange } from "../actions/index";
 import { connect } from "react-redux";
- 
- 
-const SignInForm = ({email, password, loading,  inputChange, loginUser }) => {
 
-   const clickLogin = () => {
+
+const SignInForm = ({ email, password, loading, inputChange, loginUser }) => {
+
+    useEffect(() => {
+        console.log("password: ", password);
+        inputChange({ props: "password", value: "" })
+    }, [])
+
+
+    const clickLogin = () => {
         loginUser({ email, password })
 
     }
 
-    
+
     // const renderButton = () => {
     //     if (!loading) {
     //         return (
@@ -21,15 +27,15 @@ const SignInForm = ({email, password, loading,  inputChange, loginUser }) => {
     //     }
     //     return <Spinners />;
     // }
-  
-        return (
-            <Card>
+
+    return (
+        <Card>
             <CardSection>
                 <TextInput
                     placeholder="E-mail"
                     style={styles.inputStyle}
                     value={email}
-                    onChangeText={email => inputChange({props: "email", value: email}) }
+                    onChangeText={email => inputChange({ props: "email", value: email })}
 
                 />
             </CardSection>
@@ -40,21 +46,21 @@ const SignInForm = ({email, password, loading,  inputChange, loginUser }) => {
                     placeholder="Password"
                     style={styles.inputStyle}
                     value={password}
-                    onChangeText={password =>inputChange({props: "password", value: password}) }
+                    onChangeText={password => inputChange({ props: "password", value: password })}
 
                 />
             </CardSection>
 
             <CardSection>
-            {loading && <Spinners /> }
-            {!loading && <Button onPress={() => clickLogin()}>Giriş Yap</Button>}
+                {loading && <Spinners />}
+                {!loading && <Button onPress={() => clickLogin()}>Giriş Yap</Button>}
             </CardSection>
         </Card>
-        )
-    }
+    )
+}
 
-const mapStateToProps = ({AuthenticationResponse}) => {
-    const {email, password, loading} = AuthenticationResponse;
+const mapStateToProps = ({ AuthenticationResponse }) => {
+    const { email, password, loading } = AuthenticationResponse;
     return {
         email, password, loading
     };
@@ -74,4 +80,4 @@ const styles = {
 
 }
 
-export default connect(mapStateToProps, { inputChange, loginUser }) (SignInForm);
+export default connect(mapStateToProps, { inputChange, loginUser })(SignInForm);
