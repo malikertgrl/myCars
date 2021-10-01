@@ -1,18 +1,12 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { View, Image } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Button, CardSection } from "../general"
 import LoginForm from "../components/LoginForm";
 import SigninForm from "../components/SigninForm";
 import Profile from "../components/Profile";
-import Camera from "../components/Camera";
-import ImagePicker from '../components/ImagePicker';
 import { navigationRef } from "./RootNavigation";
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 const Stack = createNativeStackNavigator();

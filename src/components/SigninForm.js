@@ -10,6 +10,8 @@ const SignInForm = ({ email, password, loading, inputChange, loginUser }) => {
     useEffect(() => {
         console.log("password: ", password);
         inputChange({ props: "password", value: "" })
+        inputChange({ props: "email", value: "" })
+
     }, [])
 
 
