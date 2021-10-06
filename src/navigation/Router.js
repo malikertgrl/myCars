@@ -2,24 +2,29 @@
 
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
 import LoginForm from "../components/LoginForm";
 import SigninForm from "../components/SigninForm";
 import Profile from "../components/Profile";
 import { navigationRef } from "./RootNavigation";
 
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 
 const Router = () => {
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator initialRouteName="LoginForm">
+      <Stack.Navigator
+        initialRouteName="LoginForm">
         <Stack.Screen
           name="LoginForm"
           component={LoginForm}
           options={{
+
             title: "Giriş Ekranı",
             headerStyle: {
               backgroundColor: '#f4511e',
@@ -31,7 +36,8 @@ const Router = () => {
           }} />
         <Stack.Screen name="SigninForm" component={SigninForm}
           options={{
-            title: "Kayıt Ekranı",
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            title: "Kayıt Ol",
             headerStyle: {
               backgroundColor: '#f4511e',
             },
