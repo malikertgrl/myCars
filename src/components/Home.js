@@ -102,58 +102,54 @@ const Home = ({ navigation }) => {
     <View style={{ flex: 1 }}>
       <FlatList
         data={car}
-        renderItem={({ item, index }) => (
+        renderItem={({ item, index }) => {
 
-          <TouchableOpacity onPress={() => navigation.navigate("Information",
-            { title: item.title, model: item.model, kilometer: item.kilometer, key: item.key, filePath: item.filePath })}>
-            <View style={items}>
-              <View style={{ flexDirection: "row" }}>
-                <Image
-                  source={{ uri: item.filePath.uri }}
-                  style={{ width: 100, height: 100 }}
-                />
-                <View>
-                  <Text style={text}> {item.title} </Text>
-                  <Text style={{ color: "gray", marginTop: 40 }}> {item.model} model</Text>
-
-
+          return (
+            <TouchableOpacity onPress={() => navigation.navigate("Information",
+              { title: item.title, model: item.model, kilometer: item.kilometer, key: item.key, filePath: item.filePath })}>
+              <View style={items}>
+                <View style={{ flexDirection: "row" }}>
+                  <Image
+                    source={{ uri: item.filePath.uri }}
+                    style={{ width: 100, height: 100 }}
+                  />
+                  <View>
+                    <Text style={text}> {item.title} </Text>
+                    <Text style={{ color: "gray", marginTop: 40 }}> {item.model} model</Text>
+                  </View>
                 </View>
+                <View>
+                  <TouchableOpacity onPress={() => removeItemFromList(index)}>
+                    <Text>
+                      <Icon name="trash" size={30} color="black" />
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+
               </View>
 
+            </TouchableOpacity>
+          )
 
-
-
-
-              <View>
-                <TouchableOpacity onPress={() => removeItemFromList(index)}>
-                  <Text>
-                    <Icon name="trash" size={30} color="black" />
-                  </Text>
-                </TouchableOpacity>
-              </View>
-
-
-            </View>
-
-          </TouchableOpacity>
-
-
-
-
-        )}
-
-
+        }}
+        ListEmptyComponent={() => (
+          <View style={{ justifyContent: "center", alignItems: "center", flex: 2 }}>
+            <Text style={{ color: "red" }} >YÜKLENİYOR...</Text>
+          </View>
+        )
+        }
       />
-      <View style={{ alignItems: "center", marginVertical: 5 }}>
+      < View style={{ alignItems: "center", marginVertical: 5 }}>
         <Button
           title="çıkış yap"
           color="#E8704A"
           style={{ margin: 20 }}
           onPress={() => navigation.navigate("LoginForm")}
         />
-      </View>
+      </View >
 
-    </View>
+    </View >
 
   );
 }
